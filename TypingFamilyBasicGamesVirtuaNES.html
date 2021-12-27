@@ -1,0 +1,135 @@
+<h1>How to Type Up Family Basic Games with VirtuaNES</h1>
+
+<h3>I. Preparation</h3>
+
+<ul>
+	<li>Download VirtuaNES</li>
+	<li>Legally obtain a ROM for Family Basic V3</li>
+	<li>Download and install a Hex editor such as HxD</li>
+	<li>(Optional) Download SSTONES.exe from: http://archive.nes.science/nesdev-forums/f2/t10156.xhtml</li>
+	<li>(Optional) Download a prepared VirtuaNES save state here: https://www.mediafire.com/file/qx46u3ez591z8fi/FAMIBE_V3_-_Key1%252C2%252C3_set.zip/file</li>
+	<li>(Optional) English Translated Family Basic Manual here: https://www.famicomworld.com/forum/index.php?topic=8876.0</li>
+</ul>
+
+<h3>II. First Use</h3>
+
+<ol>
+	<li>Extract/install VirtuaNES</li>
+	<li>Rename your Family Basic v3 ROM to FAMIBE_V3.nes</li>
+	<li>Place your FAMIBE_V3 rom into the state folder in VirtuaNES</li>
+	<li>Run VirtuaNES</li>
+	<li>Go to Edit - ExtController - and click FamilyBasic keyboard to put a check next to it</li>
+	<li>File - Open and choose your FAMIBE_V3 rom inside your VirtuaNES\state folder</li>
+	<li>(Optional) If you downloaded SSTONES.exe, place it in your VirtuaNES\state folder</li>
+	<li>If you downlaoded the VirtuaNES save state, place it in your VirtuaNES\state folder</li>
+	<ul>
+		<li>If you did not download the save state, follow the directions below to create one</li>
+	</ul>
+</ol>  
+<h4>To create a prepared Save State file for Family Basic V3 (if you did not download one above):</h4>
+<ol>
+	<li>Open VirtuaNES and load FAMIBE_V3</li>
+	<li>Type in: KEY1, CHR$(58)</li>
+	<ul>
+		<li>note, Shift-8 is left parenthesis, shift-9 is right parenthesis.  It's shifted over by 1.</li>
+	</ul>
+	<li>Hit return and it should say OK</li>
+	<li>Type in: KEY2, CHR$(42)</li>
+	<li>Hit return and it should say OK</li>
+	<li>Go to Edit - State save</li>
+	<li>Outside of VirtuaNES, open the VirtuaNES folder and the state folder inside that</li>
+	<li>Create a copy of FAMIBE_V3.st0 and name it FAMIBE_V3 Keys.st0</li>
+</ol> 
+
+What we've done is mapped a few keys to F1, F2, and F3 since they don't get mapped to a standard keyboard from a Family Basic keyboard.<br>
+
+
+<h3>III. Starting up Family Basic</h3>
+<ol>
+	<li>Open VirtuaNES</li>
+	<li>In VirtuaNES go to File - Recent File - FAMIBE_V3.nes to bring up Family Basic</li>
+	<li>In the VirtuaNES\state folder, copy FAMIBE_V3 Keys.st0 and rename it FAMIBE_V3.st0</li>
+	<li>In VirtuaNES go to Edit - State load</li>
+	<li>You are now ready to enter code</li>
+</ol> 
+
+
+<h3>IV.  Oddly Placed Keyboard Keys</h3>
+
+If you followed the directions above or used the downloaded save state:<br><br>
+
+F1 = :<br>
+F2 = *<br>
+
+Some other common keys that are in weird spots:<br><br>
+
+Del = Delete (Delete key does nothing)<br>
+Shift-2 = "<br>
+Shift-6 = &<br>
+Shift-7 = '<br>
+Shift-8 = (<br>
+Shift-9 = )<br>
+Shift-- = =<br>
+Shift-; = +<br>
+\ = Yen symbol<br>
+Insert - Inserts a space pushing the letter to the right further to the right<br>
+End - Breaks the currently running program to bring you back to the BASIC screen<br>
+
+<h4>Other Special Keys</h4>
+
+F12 - Shifts to Japanese letters (see Family Basic keyboard to see about how these map)<br>
+Shift-F12 - Shifts back to English letters<br>
+Holding Shift in F12 brings up another set of Japanese letters<br>
+
+<h3>V. Basic BASIC</h3>
+<ul>
+	<li>Start each line with a line number (e.g. 10 PRINT"OK")</li>
+	<li>A single line of code can wrap around the window to the next line multiple times</li>
+	<li>Use : between multiple commands on a single line of code (e.g. 10 LOCATE 22,11:PRINT"OK")</li>
+	<li>Spaces do nothing unless they are in quotes</li>
+    <ul>
+		<li>(e.g. 10LOCATE22,11 is the same as 10 LOCATE 22, 11)</li>
+		<li>(e.g. 10 PRINT "OK" is not the same as 10 PRINT " OK ", the second will add spaces when printed on the screen)</li>
+	</ul>
+	<li>Hit return when you are done typing in a line of code to add it to your program</li>
+	<li>If you type in the same line number but use different code, the original code for that line number will be replaced</li>
+	<li>Type VIEW and hit return to view the current background</li>
+	<li>Type RUN and hit return to run your code</li>
+</ul>
+
+<h3>VI. Tips and Tricks</h3>
+<ul>
+	<li>You can use the arrow keys to move around the window.</li>
+	<li>LIST - writes all of your code on the screen</li>
+	<li>LIST 10 - writes line 10 of your code on the screen</li>
+	<li>LIST 10-20 - writes lines 10-20 of your code on the screen</li>
+	<li>You can list out your code, go back into it to make changes and then hit return to update the code</li>
+	<li>Do a 'Edit-State save' before running code to make things easier to load back up</li>
+	<li>CLS - clears the screen (but not sprites)</li>
+	<li>SPRITE OFF - hides the sprites that are on the screen (SPRITE ON brings them right back where they were)</li>
+	<li>If your program is crashing, add a PRINT"1" or PRINT"2" between lines of problematic code to see where it is breaking</li>
+</ul>
+
+<h3>VII. Advanced (Hex Editor)</h3>
+
+When you load a save state into a hex editor:<br>
+  0x2A19 start of your code<br>
+  0x4A14 start of the text you can see on the screen<br>
+  0x4E14 start of the background<br>
+  0x5214 end of the background<br>
+
+Edit a save state, save it and then do State load in VirtuaNES to load in your changes
+<ul>
+	<li>this allows you to make changes to what's written on the screen (add in background images, japanese letters, etc. to your code)</li>
+	<li>if you have a preserved background from archive.org in .hex form, you can copy it and paste it to 0x4E14, save and load state</li>
+</ul>  
+
+
+If you would like to join the Typing Task force working on typing in code from magazines and books for Family Basic and other old computers, please join the Gaming Alexandria discord: https://discordapp.com/invite/dQhd6d7
+
+(This article written by Ozidual for Gaming Alexandria)
+
+
+
+
+
